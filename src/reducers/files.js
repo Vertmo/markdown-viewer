@@ -4,19 +4,28 @@
  * @author Basile Pesin
  */
 
-import { OPEN_FILE,
-    openFile } from '../actions/files';
+import { 
+    OPEN_FILE,
+    CLOSE_FILE
+} from '../actions/files';
 
 const initialState = {
-    fileLoaded: false,
-    content: null
+    fileOpened: false,
+    content: ''
 }
 
 function files(state=initialState, action) {
     switch(action.type) {
         case OPEN_FILE:
-            return {fileLoaded:true,
-                content: action.content};
+            return {
+                fileOpened:true,
+                content: action.content
+            };
+        case CLOSE_FILE:
+            return {
+                fileOpened:false,
+                content: ''
+            }
         default:
             return state;
     }

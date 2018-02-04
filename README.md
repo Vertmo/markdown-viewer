@@ -1,5 +1,5 @@
 # Markdown Viewer #
-A simple markdown viewer (and perhaps editor) built with React and [marked](https://github.com/chjj/marked)
+A simple markdown viewer (and perhaps editor) built with [React](https://reactjs.org/) and [marked](https://github.com/chjj/marked)
 
 ## Usage ##
 * Clone the repo

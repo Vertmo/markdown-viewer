@@ -6,7 +6,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Segment } from 'semantic-ui-react';
 import marked from 'marked';
 
 /**
@@ -19,9 +18,7 @@ class MarkdownText extends Component {
      * Rendering method
      */
     render() {
-        return (<Segment>
-            <div dangerouslySetInnerHTML={{ __html:marked(this.props.content) }}></div>
-        </Segment>)
+        return (<div dangerouslySetInnerHTML={{ __html:marked(this.props.content) }}></div>);
     }
 }
 
