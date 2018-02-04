@@ -17,10 +17,21 @@ import { openFile } from '../actions/files';
  */
 class MyDropzone extends Component {
 
+    /**
+     * Reads the dropped files (only the first one)
+     * @param acceptedFiles
+     * @param refusedFiles
+     */
     onDrop(acceptedFiles, refusedFiles) {
+        var file = acceptedFiles[0];
+        var parts = file.name.split('.');
+        if(!(parts[parts.length-1]==='md')) {
+            window.alert('Please upload a Markdown file !');
+            return;
+        }
         var reader = new FileReader();
         reader.onload = (e) => {this.props.onDrop(e.target.result)}
-        reader.readAsText(acceptedFiles[0]);
+        reader.readAsText(file);
     }
 
     /**

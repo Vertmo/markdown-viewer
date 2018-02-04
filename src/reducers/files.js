@@ -1,6 +1,6 @@
 /**
  * Reducers related to files
- * @module reducers/files.js
+ * @module reducers/files
  * @author Basile Pesin
  */
 
@@ -14,7 +14,12 @@ const initialState = {
     content: ''
 }
 
-function files(state=initialState, action) {
+/**
+ * Files reducer
+ * @param state Current state of the files
+ * @param action The action performed
+ */
+const files = (state=initialState, action) => {
     switch(action.type) {
         case OPEN_FILE:
             return {
