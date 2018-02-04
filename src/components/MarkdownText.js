@@ -9,7 +9,7 @@ import marked from 'marked';
 
 /**
  * MarkdownText class : uses marked lib to translate Markdown to HTML and displays it
- * @prop {string} content
+ * @prop {string} content The markdown formatted text to be displayed (Required)
  * @extends React.Component
  */
 class MarkdownText extends Component {
