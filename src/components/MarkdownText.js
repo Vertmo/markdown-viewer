@@ -5,6 +5,8 @@
  */
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { Segment } from 'semantic-ui-react';
 import marked from 'marked';
 
 /**
@@ -17,7 +19,9 @@ class MarkdownText extends Component {
      * Rendering method
      */
     render() {
-        return (<div dangerouslySetInnerHTML={{ __html:marked(this.props.content) }}></div>)
+        return (<Segment>
+            <div dangerouslySetInnerHTML={{ __html:marked(this.props.content) }}></div>
+        </Segment>)
     }
 }
 
@@ -25,4 +29,4 @@ MarkdownText.propTypes = {
     content: PropTypes.string.isRequired
 }
 
-export default MarkdownText;
+export default connect()(MarkdownText);

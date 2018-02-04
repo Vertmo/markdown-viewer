@@ -1,5 +1,20 @@
 body {
     margin: 0;
     padding: 0;
+    height: 100%;
     font-family: sans-serif;
+}
+
+.fullHeight {
+    height: 100%;
+}
+
+.dropzone {
+
+}
+
+.dropzone:hover {
+    text-decoration: underline;
+    background-color: #f8f8f8;
+    cursor: pointer;
 }
