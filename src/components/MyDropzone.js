@@ -30,7 +30,7 @@ class MyDropzone extends Component {
             return;
         }
         var reader = new FileReader();
-        reader.onload = (e) => {this.props.onDrop(e.target.result)}
+        reader.onload = (e) => {this.props.onDrop(file.name, e.target.result)}
         reader.readAsText(file);
     }
 
@@ -38,7 +38,7 @@ class MyDropzone extends Component {
      * Rendering method
      */
     render() {
-        return(<Segment className='fullHeight dropzone' size='massive' padded='very' textAlign='center' as={Dropzone} onDrop={(acceptedFiles, rejectedFiles) => this.onDrop(acceptedFiles, rejectedFiles)}>
+        return(<Segment className='dropzone' size='massive' padded='very' textAlign='center' as={Dropzone} onDrop={(acceptedFiles, rejectedFiles) => this.onDrop(acceptedFiles, rejectedFiles)}>
             <p>Drop a .md file here (or click and select it from your files)</p>
         </Segment>)
     }
@@ -50,8 +50,8 @@ const mapStateToProps = () => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onDrop: (content) => {
-      dispatch(openFile(content))
+    onDrop: (fileName, content) => {
+      dispatch(openFile(fileName, content))
     }
   }
 }

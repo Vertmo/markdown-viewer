@@ -28,8 +28,15 @@ class App extends Component {
         var inner;
         if(!this.props.fileOpened) inner = <MyDropzone />;
         else inner = <Segment><MarkdownText content={this.props.content} /></Segment>;
+
+        var fileNameDisplay;
+        if(!this.props.fileOpened) fileNameDisplay = "No file";
+        else fileNameDisplay = this.props.fileName;
         return (<Container>
             <Menu>
+                <Menu.Menu position='left'>
+                    <Menu.Item>{fileNameDisplay}</Menu.Item>
+                </Menu.Menu>
                 <Menu.Menu position='right'>
                     <Menu.Item><Button disabled={!this.props.fileOpened} onClick={this.props.onCloseFile}>Close</Button></Menu.Item>
                 </Menu.Menu>
@@ -42,6 +49,7 @@ class App extends Component {
 const mapStateToProps = (state, props) => {
     return {
         fileOpened: state.files.fileOpened,
+        fileName: state.files.fileName,
         content: state.files.content
     }
 }
@@ -56,7 +64,8 @@ const mapDispatchToProps = (dispatch) => {
 
 App.propTypes = {
     fileOpened: PropTypes.bool.isRequired,
-    content: PropTypes.string.isRequired,
+    fileName: PropTypes.string,
+    content: PropTypes.string,
     onCloseFile: PropTypes.func.isRequired
 }
 

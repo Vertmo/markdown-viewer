@@ -11,7 +11,8 @@ import {
 
 const initialState = {
     fileOpened: false,
-    content: ''
+    fileName: null,
+    content: null
 }
 
 /**
@@ -24,12 +25,14 @@ const files = (state=initialState, action) => {
         case OPEN_FILE:
             return {
                 fileOpened:true,
+                fileName: action.fileName,
                 content: action.content
             };
         case CLOSE_FILE:
             return {
                 fileOpened:false,
-                content: ''
+                fileName: null,
+                content: null
             }
         default:
             return state;
