@@ -6,9 +6,11 @@
 
 import { combineReducers } from 'redux';
 import files from './files';
+import content from './content';
 
 const markdownApp = combineReducers({
-    files
+    files,
+    content
 });
 
 export default markdownApp;

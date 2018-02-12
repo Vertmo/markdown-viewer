@@ -9,12 +9,16 @@ import {
     Container,
     Menu,
     Segment,
-    Button
+    Button,
+    Grid,
+    TextArea,
+    Form
 } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import MarkdownText from './MarkdownText';
 import MyDropzone from './MyDropzone';
 import { closeFile } from '../actions/files';
+import { changeContent } from '../actions/content';
 
 /**
  * App class : main component (called from index.js)
@@ -26,7 +30,7 @@ class App extends Component {
      */
     render() {
         var inner;
-        if(!this.props.fileOpened) inner = <MyDropzone />;
+        if(!this.props.content) inner = <MyDropzone text="Drop a .md file here (or click and select it from your files). You can also start writing Markdown on the left !"/>;
         else inner = <Segment><MarkdownText content={this.props.content} /></Segment>;
 
         var fileNameDisplay;
@@ -41,7 +45,18 @@ class App extends Component {
                     <Menu.Item><Button disabled={!this.props.fileOpened} onClick={this.props.onCloseFile}>Close</Button></Menu.Item>
                 </Menu.Menu>
             </Menu>
-            {inner}
+            <Grid>
+                <Grid.Row>
+                <Grid.Column width={8}>
+                    <Form>
+                        <TextArea id='textarea' autoHeight placeholder='Write here' value={this.props.content} onChange={this.props.onChange}/>
+                    </Form>
+                </Grid.Column>
+                <Grid.Column width={8}>
+                    {inner}
+                </Grid.Column>
+                </Grid.Row>
+            </Grid>
         </Container>);
     }
 }
@@ -50,7 +65,7 @@ const mapStateToProps = (state, props) => {
     return {
         fileOpened: state.files.fileOpened,
         fileName: state.files.fileName,
-        content: state.files.content
+        content: state.content.text
     }
 }
 
@@ -58,6 +73,10 @@ const mapDispatchToProps = (dispatch) => {
     return {
         onCloseFile: () => {
             dispatch(closeFile());
+            dispatch(changeContent(''));
+        },
+        onChange: (event, data) => {
+            dispatch(changeContent(data.value));
         }
     }
 }

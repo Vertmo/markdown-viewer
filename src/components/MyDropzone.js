@@ -10,6 +10,7 @@ import PropTypes from 'prop-types';
 import { Segment } from 'semantic-ui-react';
 import Dropzone from 'react-dropzone'
 import { openFile } from '../actions/files';
+import { changeContent } from '../actions/content';
 
 /**
  * MyDropzone class : encapsulates a Dropzone component
@@ -39,8 +40,8 @@ class MyDropzone extends Component {
      */
     render() {
         return(<Segment className='dropzone' size='massive' padded='very' textAlign='center' as={Dropzone} onDrop={(acceptedFiles, rejectedFiles) => this.onDrop(acceptedFiles, rejectedFiles)}>
-            <p>Drop a .md file here (or click and select it from your files)</p>
-        </Segment>)
+            <p>{this.props.text}</p>
+         </Segment>)
     }
 }
 
@@ -51,12 +52,14 @@ const mapStateToProps = () => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onDrop: (fileName, content) => {
-      dispatch(openFile(fileName, content))
+      dispatch(changeContent(content))
+      dispatch(openFile(fileName))
     }
   }
 }
 
 MyDropzone.propTypes = {
+    text: PropTypes.string.isRequired,
     onDrop: PropTypes.func.isRequired
 }
 

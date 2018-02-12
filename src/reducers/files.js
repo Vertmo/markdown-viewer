@@ -1,6 +1,6 @@
 /**
- * Reducers related to files
- * @module reducers/files
+ * Reducers related to content 
+ * @module reducers/content
  * @author Basile Pesin
  */
 
@@ -11,12 +11,11 @@ import {
 
 const initialState = {
     fileOpened: false,
-    fileName: null,
-    content: null
+    fileName: null
 }
 
 /**
- * Files reducer
+ * Content reducer
  * @param state Current state of the files
  * @param action The action performed
  */
@@ -25,14 +24,12 @@ const files = (state=initialState, action) => {
         case OPEN_FILE:
             return {
                 fileOpened:true,
-                fileName: action.fileName,
-                content: action.content
+                fileName: action.fileName
             };
         case CLOSE_FILE:
             return {
                 fileOpened:false,
-                fileName: null,
-                content: null
+                fileName: null
             }
         default:
             return state;
