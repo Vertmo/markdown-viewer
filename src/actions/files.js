@@ -4,8 +4,9 @@
  * @author Basile Pesin
  */
 
-export const OPEN_FILE = 'OPEN_FILE';
-export const CLOSE_FILE = 'CLOSE_FILE';
+export const OPEN_FILE = 'OPEN_FILE'
+export const CLOSE_FILE = 'CLOSE_FILE'
+export const SAVE_FILE = 'SAVE_FILE'
 
 /**
  * Opening and reading a new file
@@ -17,6 +18,13 @@ export const openFile = (fileName, content) => {
         type: OPEN_FILE,
         fileName: fileName,
         content: content
+    }
+}
+
+export const saveFile = (fileName) => {
+    return {
+        type: SAVE_FILE,
+        fileName: fileName
     }
 }
 

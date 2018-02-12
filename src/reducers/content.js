@@ -1,6 +1,6 @@
 /**
- * Reducers related to files
- * @module reducers/files
+ * Reducers related to content 
+ * @module reducers/content
  * @author Basile Pesin
  */
 
@@ -13,8 +13,8 @@ const initialState = {
 }
 
 /**
- * Files reducer
- * @param state Current state of the files
+ * Content reducer
+ * @param state Current state of the content 
  * @param action The action performed
  */
 const content = (state=initialState, action) => {
